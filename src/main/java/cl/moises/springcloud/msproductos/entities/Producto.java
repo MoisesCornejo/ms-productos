@@ -25,4 +25,7 @@ public class Producto {
 
     private LocalDate creado;
 
+    @Transient
+    private int port;
+
 }
