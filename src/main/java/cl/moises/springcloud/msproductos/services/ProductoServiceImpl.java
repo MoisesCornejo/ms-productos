@@ -25,10 +25,7 @@ public class ProductoServiceImpl implements ProductoService{
     @Override
     @Transactional(readOnly = true)
     public List<Producto> findAll() {
-        return productoRepository.findAll().stream().map(producto -> {
-            producto.setPort(Integer.parseInt(Objects.requireNonNull(environment.getProperty("local.server.port"))));
-            return producto;
-        }).collect(Collectors.toList());
+        return productoRepository.findAll().stream().peek(producto -> producto.setPort(Integer.parseInt(Objects.requireNonNull(environment.getProperty("local.server.port"))))).collect(Collectors.toList());
     }
 
     @Override
